@@ -5,6 +5,8 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import { Toaster, toast } from 'svelte-sonner';
+	import dotenv from 'dotenv';
+	dotenv.config();
 	export let username;
 
 	const handleSubmit = async (event) => {
@@ -14,13 +16,10 @@
 
 		formData.append('username', username);
 		try {
-			const response = await fetch(
-				'https://cma-backend-moinaz9o0-ayush-kumars-projects-511ab598.vercel.app/products',
-				{
-					method: 'POST',
-					body: formData
-				}
-			);
+			const response = await fetch(`${process.env.BASEURL}/products`, {
+				method: 'POST',
+				body: formData
+			});
 
 			if (response.ok) {
 				const result = await response.json();
