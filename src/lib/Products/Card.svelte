@@ -14,7 +14,7 @@
 		console.log(info.uuid);
 		toast.info("Deleting the car's data...");
 		const response = await fetch(
-			`http://localhost:3000/products?username=${username}&uuid=${info.uuid}`,
+			`https://cma-backend-moinaz9o0-ayush-kumars-projects-511ab598.vercel.app/products?username=${username}&uuid=${info.uuid}`,
 			{
 				method: 'DELETE'
 			}

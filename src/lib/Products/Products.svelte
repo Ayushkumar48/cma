@@ -5,9 +5,12 @@
 	let carList = [];
 	export let username;
 	onMount(async () => {
-		const response = await fetch(`http://localhost:3000/products?username=${username}`, {
-			method: 'GET'
-		});
+		const response = await fetch(
+			`https://cma-backend-moinaz9o0-ayush-kumars-projects-511ab598.vercel.app/products?username=${username}`,
+			{
+				method: 'GET'
+			}
+		);
 		const data = await response.json();
 		carList = data.carsData;
 	});

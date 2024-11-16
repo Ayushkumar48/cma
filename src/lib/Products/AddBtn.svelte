@@ -14,10 +14,13 @@
 
 		formData.append('username', username);
 		try {
-			const response = await fetch('http://localhost:3000/products', {
-				method: 'POST',
-				body: formData
-			});
+			const response = await fetch(
+				'https://cma-backend-moinaz9o0-ayush-kumars-projects-511ab598.vercel.app/products',
+				{
+					method: 'POST',
+					body: formData
+				}
+			);
 
 			if (response.ok) {
 				const result = await response.json();
