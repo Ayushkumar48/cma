@@ -9,6 +9,8 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { goto } from '$app/navigation';
 	import { toast } from 'svelte-sonner';
+	import dotenv from 'dotenv';
+	dotenv.config();
 	let { info, username } = $props();
 	async function handleDelete() {
 		console.log(info.uuid);

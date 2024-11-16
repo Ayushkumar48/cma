@@ -2,6 +2,8 @@
 	import AddBtn from './AddBtn.svelte';
 	import Card from './Card.svelte';
 	import { onMount } from 'svelte';
+	import dotenv from 'dotenv';
+	dotenv.config();
 	let carList = [];
 	export let username;
 	onMount(async () => {
