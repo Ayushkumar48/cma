@@ -5,8 +5,6 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import { Toaster, toast } from 'svelte-sonner';
-	import dotenv from 'dotenv';
-	dotenv.config();
 	export let username;
 
 	const handleSubmit = async (event) => {
@@ -16,7 +14,7 @@
 
 		formData.append('username', username);
 		try {
-			const response = await fetch(`${process.env.BASEURL}/products`, {
+			const response = await fetch(`${import.meta.env.VITE_BASEURL}/products`, {
 				method: 'POST',
 				body: formData
 			});

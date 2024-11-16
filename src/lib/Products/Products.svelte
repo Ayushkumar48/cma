@@ -7,7 +7,7 @@
 	let carList = [];
 	export let username;
 	onMount(async () => {
-		const response = await fetch(`${process.env.BASEURL}/products?username=${username}`, {
+		const response = await fetch(`${import.meta.env.VITE_BASEURL}/products?username=${username}`, {
 			method: 'GET'
 		});
 		const data = await response.json();

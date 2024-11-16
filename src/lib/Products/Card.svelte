@@ -16,7 +16,7 @@
 		console.log(info.uuid);
 		toast.info("Deleting the car's data...");
 		const response = await fetch(
-			`${process.env.BASEURL}/products?username=${username}&uuid=${info.uuid}`,
+			`${import.meta.env.VITE_BASEURL}/products?username=${username}&uuid=${info.uuid}`,
 			{
 				method: 'DELETE'
 			}
