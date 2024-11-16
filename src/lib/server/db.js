@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const MONGODB_URI = import.meta.env.VITE_MONGODB_URI;
+const MONGODB_URI = import.meta.env.MONGODB_URI;
 
 export async function connectDB() {
 	try {
