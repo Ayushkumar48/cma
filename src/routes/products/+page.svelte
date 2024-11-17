@@ -1,6 +1,7 @@
 <script>
 	import Products from '$lib/Products/Products.svelte';
-	export let data;
+	let { data } = $props();
+	console.log(data.baseurl);
 </script>
 
-<Products username={data.username} />
+<Products username={data.username} baseurl={data.baseurl} />

@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import mongoose from 'mongoose';
-const MONGODB_URI = process.env.MONGODB_URI;
+const mongouri = process.env.MONGODB_URI;
 
 export async function connectDB() {
 	try {
-		console.log(MONGODB_URI);
+		console.log(mongouri);
 		if (mongoose.connection.readyState === 0) {
-			await mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+			await mongoose.connect(mongouri, { useNewUrlParser: true, useUnifiedTopology: true });
 			console.log('Connected to MongoDB');
 		} else {
 			console.log('Already connected to MongoDB');

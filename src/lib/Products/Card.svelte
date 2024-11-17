@@ -9,23 +9,17 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { goto } from '$app/navigation';
 	import { toast } from 'svelte-sonner';
-	import dotenv from 'dotenv';
-	dotenv.config();
-	let { info, username } = $props();
+	let { info, username, baseurl } = $props();
 	async function handleDelete() {
 		console.log(info.uuid);
 		toast.info("Deleting the car's data...");
-		const response = await fetch(
-			`${import.meta.env.VITE_BASEURL}/products?username=${username}&uuid=${info.uuid}`,
-			{
-				method: 'DELETE'
-			}
-		);
+		const response = await fetch(`${baseurl}/products?username=${username}&uuid=${info.uuid}`, {
+			method: 'DELETE'
+		});
 		const data = await response.json();
 
 		toast.success('Car deleted successfully!');
 		location.reload();
-		console.log(data);
 	}
 </script>
 
