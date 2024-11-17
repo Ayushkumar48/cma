@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const mongouri = process.env.MONGODB_URI;
 
+console.log('Mongo URI:', mongouri);
 export async function connectDB() {
 	try {
 		if (mongoose.connection.readyState === 0) {
