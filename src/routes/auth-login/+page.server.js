@@ -4,14 +4,14 @@ import bcrypt from 'bcrypt';
 import { connectDB } from '$lib/server/db.js';
 
 export async function load({ cookies }) {
+	await connectDB();
 	if (cookies.get('username')) {
-		redirect(307, '/');
+		throw redirect(307, '/');
 	}
 }
 
 export const actions = {
 	default: async ({ cookies, request }) => {
-		await connectDB();
 		const data = await request.formData();
 		const username = data.get('username');
 		const password = data.get('password');

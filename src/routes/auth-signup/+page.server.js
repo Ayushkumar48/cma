@@ -6,6 +6,7 @@ import { connectDB } from '$lib/server/db.js';
 const saltRounds = 10;
 
 export async function load({ cookies }) {
+	await connectDB();
 	if (cookies.get('username')) {
 		throw redirect(307, '/');
 	}
@@ -13,13 +14,24 @@ export async function load({ cookies }) {
 
 export const actions = {
 	default: async ({ request, cookies }) => {
-		await connectDB();
 		const data = await request.formData();
 		const name = data.get('name');
 		const username = data.get('username');
 		const email = data.get('email');
 		const password = data.get('password');
-
+		const confirmPassword = data.get('confirm-password');
+		if (username.length < 4) {
+			return fail(400, {
+				message: 'Username should be at least 4 characters long.',
+				success: false
+			});
+		}
+		if (confirmPassword !== password) {
+			return fail(400, {
+				message: 'Both passwords should match.',
+				success: false
+			});
+		}
 		try {
 			const existingUsername = await User.findOne({ username });
 			if (existingUsername) {

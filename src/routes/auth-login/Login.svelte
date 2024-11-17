@@ -5,31 +5,12 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { toast } from 'svelte-sonner';
-
-	async function handleLogin(event) {
-		event.preventDefault();
-
-		const form = event.target;
-		const formData = new FormData(form);
-
-		try {
-			const response = await fetch('/auth-login', {
-				method: 'POST',
-				body: formData
-			});
-
-			if (response.ok) {
-				const result = await response.json();
-				toast.success(result.message || 'Login successful!');
-				window.location.href = '/';
-			} else {
-				const error = await response.json();
-				toast.error(error.message || 'Invalid credentials!');
-			}
-		} catch (error) {
-			console.error('Login failed:', error);
-			toast.error('An error occurred. Please try again.');
-		}
+	import { enhance } from '$app/forms';
+	export let form;
+	$: if (form?.success === true) {
+		toast.success(form.message);
+	} else if (form?.success === false) {
+		toast.error(form.message);
 	}
 </script>
 
@@ -39,7 +20,7 @@
 		<Card.Description>Buy or sell your cars quickly and affordably.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<form class="flex flex-col gap-4" method="POST" onsubmit={handleLogin}>
+		<form class="flex flex-col gap-4" method="POST" use:enhance>
 			<div class="grid w-full items-center gap-4">
 				<div class="flex flex-col space-y-1.5">
 					<Label for="username">Username</Label>
