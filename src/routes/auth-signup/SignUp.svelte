@@ -1,9 +1,46 @@
 <script>
+	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-	import { enhance } from '$app/forms';
+	import { toast } from 'svelte-sonner';
+	let { form } = $props();
+	async function handleSignup(event) {
+		event.preventDefault();
+
+		const form = event.target;
+		const formData = new FormData(form);
+		const username = formData.get('username');
+		const password = formData.get('password');
+		const confirmPassword = formData.get('confirm-password');
+		if (username.length < 4) {
+			toast.error('Username should be at least 4 characters long.');
+			return;
+		}
+		if (confirmPassword !== password) {
+			toast.error('Both passwords should match.');
+			return;
+		}
+
+		try {
+			const response = await fetch('/auth-signup', {
+				method: 'POST',
+				body: formData
+			});
+
+			const result = await response.json();
+			if (result.status === 200) {
+				toast.success(result.message || 'Account created successfully!');
+				window.location.href = '/';
+			} else {
+				toast.error(result.message || 'Signup failed!');
+			}
+		} catch (error) {
+			console.error('Signup failed:', error);
+			toast.error('An error occurred. Please try again.');
+		}
+	}
 </script>
 
 <Card.Root class="w-[350px]">
@@ -12,7 +49,7 @@
 		<Card.Description>Buy or sell your cars quickly and affordably.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<form class="flex flex-col gap-4" method="POST" use:enhance>
+		<form class="flex flex-col gap-4" method="POST" onsubmit={handleSignup} use:enhance>
 			<div class="grid w-full items-center gap-4">
 				<div class="flex flex-col space-y-1.5">
 					<Label for="name">Full Name</Label>

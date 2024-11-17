@@ -9,6 +9,5 @@ export function load({ cookies }) {
 		throw redirect(307, '/auth-login');
 	}
 	const baseurl = process.env.BASEURL;
-	console.log(username + ' ' + baseurl);
 	return { username, baseurl };
 }

@@ -32,6 +32,11 @@ export const actions = {
 				httpOnly: true,
 				maxAge: 60 * 60 * 24 * 7 * 4
 			});
+			cookies.set('name', existingUsername.name, {
+				path: '/',
+				httpOnly: true,
+				maxAge: 60 * 60 * 24 * 7 * 4
+			});
 			return {
 				message: 'Login successful!',
 				success: true

@@ -1,41 +1,25 @@
 <script>
+	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { loggedIn, doSignout } from '$lib/store';
-
-	async function handleSignout() {
-		try {
-			const res = await fetch('/api/signout', {
-				method: 'POST'
-			});
-			if (res.ok) {
-				doSignout();
-				goto('/');
-			} else {
-				console.error('Failed to sign out');
-			}
-		} catch (error) {
-			console.error('Error during signout:', error);
-		}
-	}
+	import Dropdown from './Dropdown.svelte';
+	export let username, name;
 </script>
 
 <nav data-sveltekit-reload>
-	<div class="flex flex-row justify-between border-b border-white px-4 py-4">
+	<div class="flex flex-row justify-between border-b border-white bg-black px-4 py-4">
 		<a href="/">
 			<h1 class="text-2xl">CMA</h1>
 		</a>
 		<div class="flex flex-row gap-8">
-			<Button variant="link" class="text-md text-white" onclick={() => goto('/')}>Home</Button>
-			<Button variant="link" class="text-white" onclick={() => goto('/products')}>Products</Button>
-			<Button variant="link" class="text-white" onclick={() => goto('/contact')}>Contact Us</Button>
+			<Button variant="link" class="text-md text-white" href="/">Home</Button>
+			<Button variant="link" class="text-white" href="/products">Products</Button>
+			<Button variant="link" class="text-white" href="/contact">Contact Us</Button>
 
-			{#if $loggedIn}
-				<Button variant="link" class="text-white" onclick={handleSignout}>Signout</Button>
+			{#if username && username !== ''}
+				<Dropdown {name} />
 			{:else}
-				<Button variant="link" class="text-white" onclick={() => goto('/auth-login')}>
-					Login/SignUp
-				</Button>
+				<Button variant="link" class="text-white" href="/auth-login">Login/SignUp</Button>
 			{/if}
 		</div>
 	</div>

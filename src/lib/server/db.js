@@ -5,7 +5,6 @@ const mongouri = process.env.MONGODB_URI;
 
 export async function connectDB() {
 	try {
-		console.log(mongouri);
 		if (mongoose.connection.readyState === 0) {
 			await mongoose.connect(mongouri, { useNewUrlParser: true, useUnifiedTopology: true });
 			console.log('Connected to MongoDB');

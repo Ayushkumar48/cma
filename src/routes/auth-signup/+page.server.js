@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 export async function load({ cookies }) {
 	if (cookies.get('username')) {
-		redirect(307, '/');
+		throw redirect(307, '/');
 	}
 }
 
@@ -19,19 +19,7 @@ export const actions = {
 		const username = data.get('username');
 		const email = data.get('email');
 		const password = data.get('password');
-		const confirm_password = data.get('confirm-password');
-		if (username.length < 4) {
-			return fail(400, {
-				message: 'Username should be at least 4 characters long.',
-				success: false
-			});
-		}
-		if (confirm_password !== password) {
-			return fail(400, {
-				message: 'Both passwords should match.',
-				success: false
-			});
-		}
+
 		try {
 			const existingUsername = await User.findOne({ username });
 			if (existingUsername) {
@@ -60,8 +48,13 @@ export const actions = {
 				httpOnly: true,
 				maxAge: 60 * 60 * 24 * 7 * 4
 			});
+			cookies.set('name', name, {
+				path: '/',
+				httpOnly: true,
+				maxAge: 60 * 60 * 24 * 7 * 4
+			});
 			return {
-				message: 'Logged in successfully!!!',
+				message: 'Account created successfully!!!',
 				success: true
 			};
 		} catch (error) {

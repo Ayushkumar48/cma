@@ -7,7 +7,6 @@
 	import { Toaster, toast } from 'svelte-sonner';
 	export let username;
 	export let baseurl;
-	// console.log(baseurl);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();

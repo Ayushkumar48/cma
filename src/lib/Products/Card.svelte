@@ -11,7 +11,6 @@
 	import { toast } from 'svelte-sonner';
 	let { info, username, baseurl } = $props();
 	async function handleDelete() {
-		console.log(info.uuid);
 		toast.info("Deleting the car's data...");
 		const response = await fetch(`${baseurl}/products?username=${username}&uuid=${info.uuid}`, {
 			method: 'DELETE'
@@ -35,7 +34,7 @@
 									<div class="w-full">
 										<Card.Root class="w-full">
 											<Card.Content class="flex w-full items-center justify-center p-1">
-												<a href={`/products/${info.uuid}`} data-sveltekit-prefetch>
+												<a href={`/products/${info.uuid}`} rel="external">
 													<img src={picture.url} alt="car" class="h-40 w-full rounded" /></a
 												>
 											</Card.Content>
