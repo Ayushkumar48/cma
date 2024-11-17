@@ -1,7 +1,6 @@
 {
 	"name": "cma",
 	"version": "0.0.1",
-	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -43,6 +42,7 @@
 		"bcrypt": "^5.1.1",
 		"cloudinary": "^2.5.1",
 		"dotenv": "^16.4.5",
+		"esm": "^3.2.25",
 		"formidable": "^2.1.2",
 		"mongoose": "^8.8.1",
 		"multer": "^1.4.5-lts.1",
