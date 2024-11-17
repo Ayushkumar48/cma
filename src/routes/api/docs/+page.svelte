@@ -1,4 +1,11 @@
 <div class="flex flex-col gap-4 p-4">
+	<div class="flex flex-col gap-2 pl-2">
+		<div class="text-xl">Tech Stack</div>
+		<p>Sveltekit for frontend and backend.</p>
+		<p>Node.js and Express.js for single route /products.</p>
+		<p>MongoDB for data.</p>
+		<p>Cloudinary for images.</p>
+	</div>
 	<p>
 		Only /products handlers are made using node.js and express.js and rest handlers are made using
 		SvletKit's routing. There was some compatibility issue with some libraries using the modernjs,
@@ -25,16 +32,6 @@
 	</div>
 	<div class="flex flex-col gap-2 pl-2">
 		<div class="text-lg">/products/[productId]</div>
-		<p class="pl-2">
-			----In this route calling the same /products route because there was less time left to
-			implement full.
-		</p>
-	</div>
-	<div class="flex flex-col gap-2 pl-2">
-		<div class="text-lg">Tech Stack</div>
-		<p>Sveltekit for frontend and backend.</p>
-		<p>Node.js and Express.js for single route /products.</p>
-		<p>MongoDB for data.</p>
-		<p>Cloudinary for images.</p>
+		<p class="pl-2">----This is a dynamic route for showing individual cars.</p>
 	</div>
 </div>
