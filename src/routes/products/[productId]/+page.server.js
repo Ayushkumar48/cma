@@ -1,5 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
 export const load = async ({ fetch, params, cookies }) => {
 	const username = cookies.get('username');
 	const productId = params.productId;
