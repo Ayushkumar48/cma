@@ -1,9 +1,24 @@
 <script>
 	import * as Carousel from '$lib/components/ui/carousel/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
-	export let data;
+	import Button from '$lib/components/ui/button/button.svelte';
+	import { goto } from '$app/navigation';
+	import { toast } from 'svelte-sonner';
+	let { data } = $props();
+	let username = data.username;
 	data = data[0];
-	console.log(data.pictures);
+	async function handleDelete() {
+		toast.info("Deleting the car's data...");
+		const response = await fetch(`/api/products?username=${username}&uuid=${data.uuid}`, {
+			method: 'DELETE'
+		});
+		const res = await response.json();
+
+		toast.success('Car deleted successfully!');
+		setTimeout(() => {
+			goto('/products');
+		}, 800);
+	}
 </script>
 
 <div class="flex flex-row gap-10 rounded-md bg-slate-700 p-4 shadow-xl">
@@ -51,5 +66,9 @@
 			<div class="text-lg font-bold">{data.price}</div>
 		</div>
 		<div>{data.description}</div>
+	</div>
+	<div class="flex justify-end p-2">
+		<Button class="bg-red-700 text-white hover:bg-red-500" onclick={handleDelete}>Delete Car</Button
+		>
 	</div>
 </div>

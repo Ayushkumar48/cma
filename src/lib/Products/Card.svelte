@@ -12,7 +12,7 @@
 	let { info, username, baseurl } = $props();
 	async function handleDelete() {
 		toast.info("Deleting the car's data...");
-		const response = await fetch(`${baseurl}/products?username=${username}&uuid=${info.uuid}`, {
+		const response = await fetch(`/api/products?username=${username}&uuid=${info.uuid}`, {
 			method: 'DELETE'
 		});
 		const data = await response.json();

@@ -6,7 +6,6 @@
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import { Toaster, toast } from 'svelte-sonner';
 	export let username;
-	export let baseurl;
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -15,7 +14,7 @@
 
 		formData.append('username', username);
 		try {
-			const response = await fetch(`${baseurl}/products`, {
+			const response = await fetch(`/api/products`, {
 				method: 'POST',
 				body: formData
 			});

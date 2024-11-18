@@ -8,7 +8,7 @@ const saltRounds = 10;
 export async function load({ cookies }) {
 	await connectDB();
 	if (cookies.get('username')) {
-		throw redirect(307, '/');
+		throw redirect(307, '/products');
 	}
 }
 

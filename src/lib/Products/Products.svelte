@@ -6,9 +6,8 @@
 	import { SearchOutline } from 'flowbite-svelte-icons';
 	let carList = [];
 	export let username;
-	export let baseurl;
 	onMount(async () => {
-		const response = await fetch(`${baseurl}/products?username=${username}`, {
+		const response = await fetch(`/api/products?username=${username}`, {
 			method: 'GET'
 		});
 		const data = await response.json();
@@ -32,7 +31,7 @@
 				bind:value={searchKey}
 			/>
 		</div>
-		<AddBtn {username} {baseurl} />
+		<AddBtn {username} />
 	</div>
 	<div class="flex flex-row flex-wrap justify-evenly gap-6">
 		{#if carList.length === 0}
@@ -46,7 +45,7 @@
 						.includes(searchKey.toLowerCase()) || car.description
 						.toLowerCase()
 						.includes(searchKey.toLowerCase())}
-					<Card info={car} {username} {baseurl} />
+					<Card info={car} {username} />
 				{/if}
 			{/each}
 		{/if}
