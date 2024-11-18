@@ -19,7 +19,7 @@
 			if (res.success === true) {
 				toast.success('Account deleted successfully!!!');
 				setTimeout(() => {
-					goto('/auth-login', { replace: true });
+					location.reload();
 				}, 800);
 			} else {
 				toast.error(res.message);
