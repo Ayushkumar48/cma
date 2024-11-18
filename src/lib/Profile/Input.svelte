@@ -62,13 +62,15 @@
 				</div>
 			{/if}
 		</div>
-		<button
-			class="flex flex-row items-center gap-1 rounded-xl bg-slate-500 p-[0.4rem]"
-			type="button"
-			onclick={enableInput}
-		>
-			<PenOutline class="w-[1.3rem]" />
-			<div>Edit</div>
-		</button>
+		{#if name !== 'username'}
+			<button
+				class="flex flex-row items-center gap-1 rounded-xl bg-slate-500 p-[0.4rem]"
+				type="button"
+				onclick={enableInput}
+			>
+				<PenOutline class="w-[1.3rem]" />
+				<div>Edit</div>
+			</button>
+		{/if}
 	</div>
 </div>

@@ -13,7 +13,7 @@
 		</a>
 		<div class="flex flex-row gap-8">
 			<Button variant="link" class="text-md text-white" href="/">Home</Button>
-			<Button variant="link" class="text-white" href="/products">Products</Button>
+			<Button variant="link" class="text-white" href="/products">My Garage</Button>
 			<Button variant="link" class="text-white" href="/contact">Contact Us</Button>
 
 			{#if username && username !== ''}
