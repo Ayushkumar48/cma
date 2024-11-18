@@ -1,11 +1,12 @@
-import { redirect, fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import User from '$lib/models/user.js';
 import bcrypt from 'bcrypt';
 import { connectDB } from '$lib/server/db.js';
 
 export async function load({ cookies }) {
 	await connectDB();
-	if (cookies.get('username')) {
+	const username = cookies.get('username');
+	if (username) {
 		throw redirect(307, '/products');
 	}
 }

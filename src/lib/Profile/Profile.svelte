@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import AccDelBtn from './AccDelBtn.svelte';
 	import Input from './Input.svelte';
 	import { toast } from 'svelte-sonner';
 	let { user } = $props();
@@ -38,7 +39,10 @@
 </script>
 
 <div class="flex flex-col gap-8 p-16 pt-10">
-	<div class="text-2xl">Profile Details</div>
+	<div class=" flex flex-row justify-between">
+		<div class="text-2xl">Profile Details</div>
+		<div><AccDelBtn username={user.username} /></div>
+	</div>
 	<form class="flex flex-col gap-4" method="POST" onsubmit={handleEnhance}>
 		<Input type="text" value={user.name} forLabel="name" name="name" />
 		<Input type="text" value={user.username} forLabel="username" name="username" />

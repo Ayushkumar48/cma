@@ -8,6 +8,7 @@
 	export let form;
 	$: if (form?.success === true) {
 		toast.success(form.message);
+		window.location.href = '/products';
 	} else if (form?.success === false) {
 		toast.error(form.message);
 	}

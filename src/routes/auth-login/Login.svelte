@@ -6,8 +6,8 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { toast } from 'svelte-sonner';
 	import { enhance } from '$app/forms';
-	export let form;
-	$: if (form?.success === true) {
+	let { form } = $props();
+	if (form?.success === true) {
 		toast.success(form.message);
 	} else if (form?.success === false) {
 		toast.error(form.message);
