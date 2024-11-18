@@ -9,7 +9,9 @@
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		toast.info('Data is uploading. Please Wait...');
+		toast.info('Data is uploading. Please Wait...', {
+			duration: 100000
+		});
 		const formData = new FormData(event.target);
 
 		formData.append('username', username);

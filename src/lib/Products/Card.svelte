@@ -11,7 +11,9 @@
 	import { toast } from 'svelte-sonner';
 	let { info, username, baseurl } = $props();
 	async function handleDelete() {
-		toast.info("Deleting the car's data...");
+		toast.info("Deleting the car's data...", {
+			duration: 7000
+		});
 		const response = await fetch(`/api/products?username=${username}&uuid=${info.uuid}`, {
 			method: 'DELETE'
 		});
